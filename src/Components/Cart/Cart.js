@@ -10,10 +10,10 @@ export default function Cart(props) {
   const hasItems = cartCtx.items.length > 0;
   
   const cartItemAddHandler = item => {
-    // dispatchCartAction({type:'ADD', item:item});
+    cartCtx.addItem({...item ,amount:1});
 };
 const cartItemRemoveHandler = id => {
-    // dispatchCartAction({type:'Remove', id:id});
+    cartCtx.removeItem({ ...id, id: id });
 };
 
   const cartItems = <ul className='cartItems'>

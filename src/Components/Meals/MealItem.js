@@ -5,9 +5,9 @@ import Card from '../UI/Card';
 
 export default function MealItem(props) {
 
-    const cartctx = useContext(CArtContext);
+    const cartCtx = useContext(CArtContext);
     const addToCartHandler = (amount) => {
-        cartctx.addItem({
+        cartCtx.addItem({
             id: props.id,
             name: props.name,
             amount: amount,
@@ -17,7 +17,7 @@ export default function MealItem(props) {
     return (
         <div>
         <Card className='meals-added'> 
-            <li key={props.key} className='dy-meals'>
+            <li  className='dy-meals'>
                 <div>
                     <b>{props.name}</b><br />
                     <i>{props.description}</i>

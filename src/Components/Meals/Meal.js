@@ -31,34 +31,11 @@ const dummy_meals = [
     },
 ]
 export default function Meal(props) {
-    // const [amountIsValid, setAmountIsValid] = useState(false);
 
-    // const amountInputRef = useRef();
-
-    // const cartctx = useContext(CArtContext);
-    // const addToCart = (amount) => {
-    //     cartctx.addItem({
-    //         id: props.id,
-    //         name: props.name,
-    //         amount: amount,
-    //         price: props.price
-    //     })
-    // };
- 
-    // const submitHandler = event => {
-    //     event.preventDefault();
-    //     const enteredAmount = amountInputRef.current.value;
-    //     const enteredAmountNumber = +enteredAmount;
-    //     if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
-    //         setAmountIsValid(false);
-    //         return;
-    //     };
-    //     addToCart(enteredAmountNumber);
-    // };
-
-    const mealList = dummy_meals.map(meal => {
+    const mealList = dummy_meals.map((meal) => {
         return (<MealItem key={meal.id} name={meal.name} description={meal.description} price={meal.price} id={meal.id} />)
     })
+
     return (
         <React.Fragment>
             <Card className='meal-card'>
@@ -72,22 +49,6 @@ export default function Meal(props) {
             <Card className='add-meal-card'>
                 <section>
                     <ul>
-                        {/* {dummy_meals.map((meal) => {
-                            return (
-                                <Card className='meals-added'> */}
-                                    {/* <li key={meal.id} className='dy-meals'>
-                                        <div>
-                                            <b>{meal.name}</b><br />
-                                            <i>{meal.description}</i>
-                                            <p className='pricing'>${meal.price.toFixed(2)}</p>
-                                        </div>
-                                        <MealForm onSubmit={submitHandler} valid={amountIsValid} ref={amountInputRef} />
-                                    </li> */}
-                                    {/* <MealItem    /> */}
-                                {/* </Card>
-                            )
-                        }
-                        )} */}
                         {mealList}
                     </ul>
                 </section>
