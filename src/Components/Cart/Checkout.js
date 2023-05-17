@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useHook from './useHook';
 import CartButton from '../Layout/CartButton';
 
@@ -56,33 +56,34 @@ export default function Checkout(props) {
     const confirmHandler = e => {
         e.preventDefault();
         console.log('form submitted')
+        //     if (!nameIsValid && emailIsValid && numberIsValid && codeIsValid && addressIsValid) {
+        //         return;
+        //     }
+        // resetNameInput();
+        // resetEmailInput();
+        // resetNumberInput();
+        // resetAddressInput();
+        // resetCodeInput();
+
+        // };
         if (!nameIsValid && emailIsValid && numberIsValid && codeIsValid && addressIsValid) {
+            const formData = {
+                name: enterName,
+                email: enterEmail,
+                number: enterNumber,
+                address: enterAddress,
+                code: enterCode
+            };
+
+            props.onConfirm = (formData);
             return;
-        }
+        };
         resetNameInput();
         resetEmailInput();
         resetNumberInput();
         resetAddressInput();
         resetCodeInput();
     };
-
-    // props.onConfirm = ({
-    //     name = enterName,
-    //     email = enterEmail,
-    //     number = enterNumber,
-    //     address = enterAddress,
-    //     code = enterCode
-    // }) => {
-    //     if (name.length > 2 && email.length > 2 && number.length > 2 && code.length > 2 && address.length > 2) {
-    //         props.onConfirm({
-    //             name,
-    //             email,
-    //             number,
-    //             address,
-    //             code
-    //         });
-    //     }
-    // }
 
     const invalidInputName = nameInputHasError ? 'inputFields-control invalid' : 'inputFields-control';
     const invalidInputEmail = emailInputHasError ? 'inputFields-control invalid' : 'inputFields-control ';
