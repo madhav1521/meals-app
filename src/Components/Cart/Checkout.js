@@ -11,7 +11,7 @@ export default function Checkout(props) {
         inputChangeHandler: nameChangeHandler,
         inputBlurHandler: nameBlurHandler,
         reset: resetNameInput
-    } = useHook(value => value.trim().length < 3 || value.trim().length > 20 && value.trim() === '');
+    } = useHook(value => (value.trim().length < 3 || value.trim().length > 20 )&& value.trim() === '');
 
     const {
         value: enterEmail,
@@ -37,7 +37,7 @@ export default function Checkout(props) {
         inputChangeHandler: addressChangeHandler,
         inputBlurHandler: addressBlurHandler,
         reset: resetAddressInput
-    } = useHook(value => value.trim().length < 1 || value.trim().length > 10);
+    } = useHook(value => value.trim().length < 1 || value.trim().length > 100);
 
     const {
         value: enterCode,
@@ -53,31 +53,19 @@ export default function Checkout(props) {
         totalForms = true;
     };
 
-    const confirmHandler = e => {
+    const confirmHandler = async (e) => {
         e.preventDefault();
         console.log('form submitted')
-        //     if (!nameIsValid && emailIsValid && numberIsValid && codeIsValid && addressIsValid) {
-        //         return;
-        //     }
-        // resetNameInput();
-        // resetEmailInput();
-        // resetNumberInput();
-        // resetAddressInput();
-        // resetCodeInput();
-
-        // };
         if (!nameIsValid && emailIsValid && numberIsValid && codeIsValid && addressIsValid) {
-            const formData = {
-                name: enterName,
-                email: enterEmail,
-                number: enterNumber,
-                address: enterAddress,
-                code: enterCode
-            };
-
-            props.onConfirm = (formData);
             return;
         };
+        props.onConfirm({
+            name: enterName,
+            email: enterEmail,
+            number: enterNumber,
+            address: enterAddress,
+            code: enterCode
+        });
         resetNameInput();
         resetEmailInput();
         resetNumberInput();
@@ -107,7 +95,10 @@ export default function Checkout(props) {
 
             <div className={invalidInputNumber} >
                 <label htmlFor='number'>Enter your Mobile Number* </label>
-                <input value={enterNumber} className='input-field' onBlur={numberBlurHandler} onChange={numberChangeHandler} type='number' id='number' name='number' />
+                <div className='input-number-field'>
+                    <span>+91</span>
+                    <input value={enterNumber} className='input-field' onBlur={numberBlurHandler} onChange={numberChangeHandler} type='number' id='number' name='number' />
+                </div>
                 {numberInputHasError && <p>Please enter valid Mobile number </p>}
             </div>
             <div className={invalidInputAddress}>

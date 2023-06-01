@@ -3,6 +3,7 @@ import Modal from './Modal'
 import CArtContext from '../../Store/CArtContext';
 import CartItem from './CartItem';
 import Checkout from './Checkout';
+import orderSuccess from '../../Assets/Images/animation.gif'
 
 export default function Cart(props) {
   const [isCheckout, setIsCheckout] = useState(false)
@@ -17,8 +18,9 @@ export default function Cart(props) {
     cartCtx.addItem({ ...item, amount: 1 });
   };
   const cartItemRemoveHandler = id => {
-    cartCtx.removeItem({ ...id, id: id });
+    cartCtx.removeItem(id);
   };
+  // console.log('remove:',cartItemRemoveHandler)
 
   const orderHandler = () => {
     setIsCheckout(true);
@@ -48,8 +50,9 @@ export default function Cart(props) {
         name={item.name}
         amount={item.amount}
         price={item.price}
-        onRemove={cartItemRemoveHandler.bind(null, item)}
+        onRemove={cartItemRemoveHandler.bind(null, item.id)}
         onAdd={cartItemAddHandler.bind(null, item)}
+
       />))}
   </ul>
 
@@ -75,13 +78,17 @@ export default function Cart(props) {
     </>
   );
 
-  const submittingContent = <h2>Data Under Procss...</h2>
+  const submittingContent = <Modal><h2>Data Under Procss...</h2></Modal>
   const submittingSuccessContent = (
     <>
-      <h2>Order Submitted Successfully...</h2>
-      <div>
-        <iframe src="https://gifer.com/embed/XD4x" width='480px' height='360px' frameBorder="0" allowFullScreen></iframe>
+      <Modal onClose={props.onClose}>
+      <div className='submitted-order'>
+        <h2>Order Submitted Successfully...</h2>
+        <div >
+          <img src={orderSuccess} alt='order-submitted-successfully' />
+        </div>
       </div>
+      </Modal>
     </>
   );
 
