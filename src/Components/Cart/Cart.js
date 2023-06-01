@@ -28,7 +28,7 @@ export default function Cart(props) {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch('https://mealicious-app-default-rtdb.firebaseio.com/Orders.json', {
+    await fetch('https://meals-app-8e612-default-rtdb.firebaseio.com/Orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,

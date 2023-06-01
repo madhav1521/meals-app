@@ -11,7 +11,7 @@ export default function Meal(props) {
     useEffect(() => {
         const fetchMeals = async () => {
             try {
-                const response = await fetch('https://mealicious-app-default-rtdb.firebaseio.com/Meals.json');
+                const response = await fetch('https://meals-app-8e612-default-rtdb.firebaseio.com/Meals.json');
                 if (!response.ok) {
                     console.log('Failed to fetch meals.')
                     throw new Error('Failed to fetch meals.');
