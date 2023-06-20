@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import React, { useState, useRef, useContext, useEffect } from 'react'
-=======
 import React, { useState, useEffect } from 'react'
->>>>>>> 2252d56dd8c73f698ed4728a7080e578928cf1fa
 import Card from '../UI/Card'
 import MealItem from './MealItem'
 
